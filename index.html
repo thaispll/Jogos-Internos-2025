@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Interativo - Jogos Internos 2025</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="title">Jogos Internos 2025</h1>
+                <div class="controls">
+                    <button id="btnLocalizacao" class="btn btn-location">
+                        <i class="fas fa-compass"></i>
+                        <span id="textLocalizacao">Minha Localização</span>
+                    </button>
+                    <button id="btnHome" class="btn btn-control">
+                        <i class="fas fa-home"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Busca e Filtros -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-content">
+                <!-- Campo de Busca -->
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="inputBusca" placeholder="Buscar local..." class="search-input">
+                </div>
+                
+                <!-- Filtros de Categoria -->
+                <div class="filters">
+                    <button class="filter-btn active" data-categoria="todas">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Todos (<span id="count-todas">20</span>)
+                    </button>
+                    <button class="filter-btn" data-categoria="alimentacao_ouvintes">
+                        <i class="fas fa-utensils"></i>
+                        Alimentação (<span id="count-alimentacao_ouvintes">2</span>)
+                    </button>
+                    <button class="filter-btn" data-categoria="alimentacao_jogadores">
+                        <i class="fas fa-medal"></i>
+                        Alim. Competidores (<span id="count-alimentacao_jogadores">1</span>)
+                    </button>
+                    <button class="filter-btn" data-categoria="campo_futebol">
+                        <i class="fas fa-futbol"></i>
+                        Campos Futebol (<span id="count-campo_futebol">2</span>)
+                    </button>
+                    <button class="filter-btn" data-categoria="quadra_tenis">
+                        <i class="fas fa-table-tennis"></i>
+                        Quadra Tênis (<span id="count-quadra_tenis">1</span>)
+                    </button>
+                    <button class="filter-btn" data-categoria="esportes">
+                        <i class="fas fa-swimmer"></i>
+                        Esportes (<span id="count-esportes">1</span>)
+                    </button>
+                </div>
+                
+                <!-- Segunda linha de filtros -->
+                <div class="filters">
+                    <button class="filter-btn" data-categoria="banheiros">
+                        <i class="fas fa-restroom"></i>
+                        Banheiros (<span id="count-banheiros">2</span>)
+                    </button>
+                    <button class="filter-btn" data-categoria="entrada_saida">
+                        <i class="fas fa-door-open"></i>
+                        Entrada/Acesso (<span id="count-entrada_saida">2</span>)
+                    </button>
+                    <button class="filter-btn" data-categoria="servicos">
+                        <i class="fas fa-concierge-bell"></i>
+                        Serviços (<span id="count-servicos">2</span>)
+                    </button>
+                    <button class="filter-btn" data-categoria="retirada_kit">
+                        <i class="fas fa-box"></i>
+                        Retirada Kit (<span id="count-retirada_kit">1</span>)
+                    </button>
+                    <button class="filter-btn" data-categoria="hidratacao">
+                        <i class="fas fa-tint"></i>
+                        Hidratação (<span id="count-hidratacao">2</span>)
+                    </button>
+                    <button class="filter-btn" data-categoria="tendas">
+                        <i class="fas fa-campground"></i>
+                        Tendas (<span id="count-tendas">4</span>)
+                    </button>
+                </div>
+
+                <!-- Status de Localização -->
+                <div id="statusLocalizacao" class="location-status hidden">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Localização obtida! Pontos ordenados por proximidade.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapa Principal -->
+    <main class="map-container">
+        <div id="mapaWrapper" class="map-wrapper">
+            <div id="mapa" class="map">
+                <img id="imagemMapa" src="planta-evento.png" alt="Planta do Evento" class="map-image">
+                
+                <!-- Pontos de Interesse serão inseridos aqui via JavaScript -->
+                <div id="pontosContainer" class="points-container"></div>
+                
+                <!-- Rota será desenhada aqui -->
+                <svg id="rotaSvg" class="route-svg">
+                    <path id="rotaPath" class="route-path"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Popup de Detalhes -->
+        <div id="popup" class="popup hidden">
+            <div class="popup-header">
+                <h3 id="popupTitulo" class="popup-title"></h3>
+                <button id="btnFecharPopup" class="btn-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="popup-content">
+                <div id="popupCategoria" class="popup-category"></div>
+                
+                <div class="popup-info">
+                    <p id="popupEndereco" class="popup-address"></p>
+                    <p id="popupDescricao" class="popup-description"></p>
+                </div>
+
+                <div id="popupDistancia" class="popup-distance hidden"></div>
+
+                <div class="popup-schedule">
+                    <i class="fas fa-clock"></i>
+                    <span>Horário: <span id="popupHorario"></span></span>
+                </div>
+
+                <div class="popup-actions">
+                    <button id="btnNavegar" class="btn btn-navigate">
+                        <i class="fas fa-route"></i>
+                        Navegar (GPS)
+                    </button>
+                    <button id="btnRota" class="btn btn-route">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Como chegar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indicadores -->
+        <div class="map-indicators">
+            <div id="contadorPontos" class="indicator">
+                20 pontos encontrados
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading -->
+    <div id="loading" class="loading hidden">
+        <div class="loading-spinner"></div>
+        <p>Obtendo sua localização...</p>
+    </div>
+
+    <script src="dados.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
