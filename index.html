@@ -12,12 +12,8 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <h1 class="title">Jogos Internos 2025</h1>
+                <h1 class="title">FIRJAN - JOGOS INTERNOS 2025</h1>
                 <div class="controls">
-                    <button id="btnLocalizacao" class="btn btn-location">
-                        <i class="fas fa-compass"></i>
-                        <span id="textLocalizacao">Minha Localização</span>
-                    </button>
                     <button id="btnHome" class="btn btn-control">
                         <i class="fas fa-home"></i>
                     </button>
@@ -42,6 +38,10 @@
                         <i class="fas fa-map-marker-alt"></i>
                         Todos (<span id="count-todas">20</span>)
                     </button>
+                    <button class="filter-btn cerimonia-destaque" data-categoria="cerimonia_abertura">
+                        <i class="fas fa-star"></i>
+                        🎭 Cerimônia de Abertura (<span id="count-cerimonia_abertura">1</span>)
+                    </button>
                     <button class="filter-btn" data-categoria="alimentacao_ouvintes">
                         <i class="fas fa-utensils"></i>
                         Alimentação (<span id="count-alimentacao_ouvintes">2</span>)
@@ -50,17 +50,9 @@
                         <i class="fas fa-medal"></i>
                         Alim. Competidores (<span id="count-alimentacao_jogadores">1</span>)
                     </button>
-                    <button class="filter-btn" data-categoria="campo_futebol">
-                        <i class="fas fa-futbol"></i>
-                        Campos Futebol (<span id="count-campo_futebol">2</span>)
-                    </button>
-                    <button class="filter-btn" data-categoria="quadra_tenis">
-                        <i class="fas fa-table-tennis"></i>
-                        Quadra Tênis (<span id="count-quadra_tenis">1</span>)
-                    </button>
                     <button class="filter-btn" data-categoria="esportes">
                         <i class="fas fa-swimmer"></i>
-                        Esportes (<span id="count-esportes">1</span>)
+                        Esportes (<span id="count-esportes">3</span>)
                     </button>
                 </div>
                 
@@ -70,9 +62,9 @@
                         <i class="fas fa-restroom"></i>
                         Banheiros (<span id="count-banheiros">2</span>)
                     </button>
-                    <button class="filter-btn" data-categoria="entrada_saida">
+                    <button class="filter-btn" data-categoria="entrada_acesso">
                         <i class="fas fa-door-open"></i>
-                        Entrada/Acesso (<span id="count-entrada_saida">2</span>)
+                        Entrada/Acesso (<span id="count-entrada_acesso">2</span>)
                     </button>
                     <button class="filter-btn" data-categoria="servicos">
                         <i class="fas fa-concierge-bell"></i>
@@ -91,31 +83,90 @@
                         Tendas (<span id="count-tendas">4</span>)
                     </button>
                 </div>
-
-                <!-- Status de Localização -->
-                <div id="statusLocalizacao" class="location-status hidden">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Localização obtida! Pontos ordenados por proximidade.
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Mapa Principal -->
-    <main class="map-container">
-        <div id="mapaWrapper" class="map-wrapper">
-            <div id="mapa" class="map">
-                <img id="imagemMapa" src="planta-evento2.png" alt="Planta do Evento" class="map-image">
-                
-                <!-- Pontos de Interesse serão inseridos aqui via JavaScript -->
-                <div id="pontosContainer" class="points-container"></div>
-                
-                <!-- Rota será desenhada aqui -->
-                <svg id="rotaSvg" class="route-svg">
-                    <path id="rotaPath" class="route-path"></path>
-                </svg>
+    <!-- Container Principal com Mapa e Programação -->
+    <div class="main-content">
+        <main class="map-container">
+            <div class="map-header">
+                <h2>🗺️ MAPA DO EVENTO</h2>
+                <p class="map-subtitle">Jogos Internos 2025</p>
             </div>
-        </div>
+            
+            <div id="mapaWrapper" class="map-wrapper">
+                <div id="mapa" class="map">
+                    <img id="imagemMapa" src="planta-evento2.png" alt="Planta do Evento" class="map-image">
+                    
+                    <!-- Pontos de Interesse serão inseridos aqui via JavaScript -->
+                    <div id="pontosContainer" class="points-container"></div>
+                    
+                    <!-- Rota será desenhada aqui -->
+                    <svg id="rotaSvg" class="route-svg">
+                        <path id="rotaPath" class="route-path"></path>
+                    </svg>
+                </div>
+            </div>
+        </main>
+
+        <!-- Seção de Programação -->
+        <aside class="programacao-container">
+            <div class="programacao-header">
+                <h2>📅 PROGRAMAÇÃO</h2>
+                <p class="programacao-subtitle">Jogos Internos 2025</p>
+            </div>
+            
+            <div class="programacao-content">
+                <div class="programacao-item">
+                    <span class="horario">08:00 às 10:00</span>
+                    <span class="atividade">Chegada das Delegações</span>
+                </div>
+                
+                <div class="programacao-item destaque">
+                    <span class="horario">10:00 às 10:30</span>
+                    <span class="atividade">Cerimônia de Boas-vindas e desfile das Delegações</span>
+                </div>
+                
+                <div class="programacao-item">
+                    <span class="horario">10:30 às 10:45</span>
+                    <span class="atividade">Discurso de abertura do evento</span>
+                </div>
+                
+                <div class="programacao-item destaque">
+                    <span class="horario">10:45 às 10:50</span>
+                    <span class="atividade">Execução do Hino Nacional</span>
+                </div>
+                
+                <div class="programacao-item">
+                    <span class="horario">10:55 às 11:00</span>
+                    <span class="atividade">Ato simbólico para início das partidas em suas arenas</span>
+                </div>
+                
+                <div class="programacao-item alimentacao">
+                    <span class="horario">10:55 às 16:00</span>
+                    <span class="atividade">Serviço de Alimentação</span>
+                </div>
+                
+                <div class="programacao-item alimentacao">
+                    <span class="horario">14h30 às 16h30</span>
+                    <span class="atividade">Sobremesas</span>
+                </div>
+                
+                <div class="programacao-item premiacao">
+                    <span class="horario">15:45 às 15:50</span>
+                    <span class="atividade">Anúncio e premiação da Delegação Campeã dos Jogos 2025</span>
+                    <span class="observacao">(pode sofrer alteração, a depender do tempo das partidas)</span>
+                </div>
+                
+                <div class="programacao-item encerramento">
+                    <span class="horario">16:00 às 17:00</span>
+                    <span class="atividade">Encerramento e saída dos ônibus</span>
+                </div>
+            </div>
+        </aside>
+    </div>
 
         <!-- Popup de Detalhes -->
         <div id="popup" class="popup hidden">
@@ -155,7 +206,7 @@
         </div>
 
         <!-- Indicadores -->
-        <div class="map-indicators">
+        <div class="map-indicators" style="display: none;">
             <div id="contadorPontos" class="indicator">
                 20 pontos encontrados
             </div>

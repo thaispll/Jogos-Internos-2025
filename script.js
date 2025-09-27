@@ -1,4 +1,6 @@
-// Variáveis globais
+// Mapa Interativo - Jogos Internos 2025
+// ZOOM COMPLETAMENTE DESABILITADO - PONTOS FIXOS
+
 let posicaoUsuario = null;
 let pontoSelecionado = null;
 let categoriaAtiva = 'todas';
@@ -19,7 +21,45 @@ document.addEventListener('DOMContentLoaded', function() {
     criarPontos();
     atualizarContadores();
     ajustarResponsividade();
+    
+    // BLOQUEAR ZOOM COMPLETAMENTE
+    bloquearZoom();
 });
+
+// Função para bloquear zoom completamente
+function bloquearZoom() {
+    // Bloquear zoom por scroll
+    mapa.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }, { passive: false });
+    
+    // Bloquear zoom por touch (pinch)
+    mapa.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    }, { passive: false });
+    
+    mapa.addEventListener('touchmove', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    }, { passive: false });
+    
+    // Bloquear zoom por teclado
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '-' || e.key === '0')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+}
 
 // Ajuste de responsividade sem zoom
 function ajustarResponsividade() {
@@ -77,7 +117,6 @@ function inicializarMapa() {
 function configurarEventos() {
     // Botões de controle (removidos zoom in/out)
     document.getElementById('btnHome').addEventListener('click', resetarVisualizacao);
-    document.getElementById('btnLocalizacao').addEventListener('click', obterLocalizacao);
     
     // Busca
     inputBusca.addEventListener('input', debounce(buscarPontos, 300));
@@ -212,7 +251,7 @@ function mostrarPopup(ponto) {
     
     // Preencher informações
     document.getElementById('popupTitulo').textContent = ponto.nome;
-    document.getElementById('popupCategoria').textContent = categorias[ponto.categoria].emoji + ' ' + categorias[ponto.categoria].label;
+    document.getElementById('popupCategoria').textContent = categorias[ponto.categoria].icone + ' ' + categorias[ponto.categoria].nome;
     document.getElementById('popupEndereco').textContent = ponto.endereco;
     document.getElementById('popupDescricao').textContent = ponto.descricao;
     document.getElementById('popupHorario').textContent = ponto.horario;
@@ -293,55 +332,6 @@ function mostrarRota() {
     }, 5000);
 }
 
-// Geolocalização
-function obterLocalizacao() {
-    const btn = document.getElementById('btnLocalizacao');
-    const texto = document.getElementById('textLocalizacao');
-    const loading = document.getElementById('loading');
-    
-    if (!navigator.geolocation) {
-        alert('Geolocalização não suportada neste navegador.');
-        return;
-    }
-    
-    btn.disabled = true;
-    texto.textContent = 'Obtendo...';
-    loading.classList.remove('hidden');
-    
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            posicaoUsuario = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-                x: 400, // Posição padrão no mapa
-                y: 300
-            };
-            
-            calcularDistancias();
-            ordenarPorProximidade();
-            
-            btn.disabled = false;
-            texto.textContent = 'Localização Obtida';
-            loading.classList.add('hidden');
-            
-            document.getElementById('statusLocalizacao').classList.remove('hidden');
-        },
-        (error) => {
-            console.error('Erro ao obter localização:', error);
-            btn.disabled = false;
-            texto.textContent = 'Erro na Localização';
-            loading.classList.add('hidden');
-            
-            alert('Não foi possível obter sua localização. Verifique as permissões.');
-        },
-        {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 300000
-        }
-    );
-}
-
 // Calcular distâncias
 function calcularDistancias() {
     if (!posicaoUsuario) return;
@@ -387,7 +377,8 @@ function atualizarContadores() {
 }
 
 function atualizarContador() {
-    contadorPontos.textContent = `${pontosVisiveis.length} pontos encontrados`;
+    // Contador desabilitado para melhor experiência visual
+    // contadorPontos.textContent = `${pontosVisiveis.length} pontos encontrados`;
 }
 
 // Utilitários

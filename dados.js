@@ -1,5 +1,6 @@
-// Dados com coordenadas corrigidas para a planta do evento
-// Coordenadas ajustadas para uma imagem de aproximadamente 800x600px
+// Dados do Mapa Interativo - Jogos Internos 2025
+// Coordenadas exatas fornecidas pelo usuário
+
 const pontosInteresse = [
     // ========================================
     // ALIMENTAÇÃO
@@ -9,7 +10,7 @@ const pontosInteresse = [
         nome: "Alimentação",
         categoria: "alimentacao_ouvintes",
         coordenadas: {
-            x: 350, y: 75,
+            x: 410, y: 140,
             lat: -23.550789, lng: -46.633012
         },
         endereco: "Área de Alimentação Norte",
@@ -22,7 +23,7 @@ const pontosInteresse = [
         nome: "Buffet",
         categoria: "alimentacao_ouvintes",
         coordenadas: {
-            x: 395, y: 148,
+            x: 490, y: 240,
             lat: -23.550345, lng: -46.633567
         },
         endereco: "Área do Buffet Central",
@@ -35,7 +36,7 @@ const pontosInteresse = [
         nome: "Alimentação dos Competidores",
         categoria: "alimentacao_jogadores",
         coordenadas: {
-            x: 393, y: 201,
+            x: 479, y: 320,
             lat: -23.550890, lng: -46.633890
         },
         endereco: "Área Restrita - Atletas",
@@ -50,10 +51,10 @@ const pontosInteresse = [
     {
         id: 4,
         nome: "Campo de Futebol",
-        categoria: "campo_futebol",
+        categoria: "esportes",
         coordenadas: {
-            x: 345, y: 304,
-            lat: -23.550567, lng: -46.633234
+            x: 300, y: 500,
+            lat: -23.550456, lng: -46.633234
         },
         endereco: "Campo Principal",
         descricao: "Campo principal de futebol",
@@ -63,27 +64,29 @@ const pontosInteresse = [
     {
         id: 5,
         nome: "Campo do Resende",
-        categoria: "campo_futebol",
+        categoria: "cerimonia_abertura",
         coordenadas: {
-            x: 479, y: 178,
+            x: 800, y: 290,
             lat: -23.550123, lng: -46.633678
         },
         endereco: "Setor Resende",
-        descricao: "Campo do Resende",
-        horario: "07:00 - 21:00",
+        descricao: "Campo do Resende - Local da Cerimônia de Abertura dos Jogos Internos 2025",
+        horario: "10:00 ",
+        evento_especial: "Cerimônia de Abertura dos Jogos Internos 2025",
+        horario_cerimonia: "10:00",
         distancia: null
     },
     {
         id: 6,
         nome: "Quadra de Tênis",
-        categoria: "quadra_tenis",
+        categoria: "esportes",
         coordenadas: {
-            x: 415, y: 394,
+            x: 550, y: 650,
             lat: -23.550456, lng: -46.633234
         },
-        endereco: "Área de Tênis",
+        endereco: "Complexo Esportivo",
         descricao: "Quadra oficial de tênis",
-        horario: "07:00 - 21:00",
+        horario: "06:00 - 22:00",
         distancia: null
     },
     {
@@ -91,11 +94,11 @@ const pontosInteresse = [
         nome: "Piscina",
         categoria: "esportes",
         coordenadas: {
-            x: 495, y: 317,
-            lat: -23.550678, lng: -46.633234
+            x: 800, y: 530,
+            lat: -23.550567, lng: -46.633123
         },
-        endereco: "Área Aquática",
-        descricao: "Piscina para competições",
+        endereco: "Complexo Aquático",
+        descricao: "Piscina para atividades aquáticas",
         horario: "06:00 - 20:00",
         distancia: null
     },
@@ -108,12 +111,12 @@ const pontosInteresse = [
         nome: "Banheiros",
         categoria: "banheiros",
         coordenadas: {
-            x: 350, y: 253,
+            x: 360, y: 415,
             lat: -23.550234, lng: -46.633456
         },
-        endereco: "Área Central",
-        descricao: "Banheiros principais",
-        horario: "24h",
+        endereco: "Bloco Central",
+        descricao: "Banheiros centrais",
+        horario: "24 horas",
         distancia: null
     },
     {
@@ -121,12 +124,12 @@ const pontosInteresse = [
         nome: "Banheiros",
         categoria: "banheiros",
         coordenadas: {
-            x: 430, y: 410,
-            lat: -23.550345, lng: -46.633567
+            x: 600, y: 675,
+            lat: -23.550678, lng: -46.633789
         },
-        endereco: "Área Sul",
-        descricao: "Banheiros secundários",
-        horario: "24h",
+        endereco: "Bloco Sul",
+        descricao: "Banheiros do setor sul",
+        horario: "24 horas",
         distancia: null
     },
 
@@ -136,27 +139,27 @@ const pontosInteresse = [
     {
         id: 10,
         nome: "Acesso para a Área de Alimentação",
-        categoria: "entrada_saida",
+        categoria: "entrada_acesso",
         coordenadas: {
-            x: 395, y: 254,
-            lat: -23.550234, lng: -46.633445
+            x: 470, y: 450,
+            lat: -23.550345, lng: -46.633234
         },
-        endereco: "Acesso Principal",
-        descricao: "Entrada para área de alimentação",
-        horario: "24h",
+        endereco: "Corredor Principal",
+        descricao: "Acesso direto para área de alimentação",
+        horario: "06:00 - 23:00",
         distancia: null
     },
     {
         id: 11,
         nome: "Entrada - Tenda de Acesso",
-        categoria: "entrada_saida",
+        categoria: "entrada_acesso",
         coordenadas: {
-            x: 505, y: 579,
-            lat: -23.550111, lng: -46.633333
+            x: 830, y: 950,
+            lat: -23.550890, lng: -46.633456
         },
         endereco: "Entrada Principal",
-        descricao: "Tenda de acesso principal",
-        horario: "06:00 - 24:00",
+        descricao: "Tenda de acesso principal ao evento",
+        horario: "05:00 - 24:00",
         distancia: null
     },
 
@@ -168,12 +171,12 @@ const pontosInteresse = [
         nome: "Guarda-Volumes",
         categoria: "servicos",
         coordenadas: {
-            x: 490, y: 500,
-            lat: -23.550789, lng: -46.633111
+            x: 790, y: 850,
+            lat: -23.550567, lng: -46.633345
         },
         endereco: "Área de Serviços",
         descricao: "Guarda-volumes para participantes",
-        horario: "07:00 - 22:00",
+        horario: "06:00 - 22:00",
         distancia: null
     },
     {
@@ -181,12 +184,12 @@ const pontosInteresse = [
         nome: "Espaço SESI",
         categoria: "servicos",
         coordenadas: {
-            x: 440, y: 290,
-            lat: -23.550345, lng: -46.633456
+            x: 630, y: 490,
+            lat: -23.550568, lng: -46.633346
         },
-        endereco: "Área SESI",
+        endereco: "Bloco SESI",
         descricao: "Espaço dedicado SESI",
-        horario: "08:00 - 18:00",
+        horario: "07:00 - 19:00",
         distancia: null
     },
 
@@ -198,11 +201,11 @@ const pontosInteresse = [
         nome: "Retirada de Kit",
         categoria: "retirada_kit",
         coordenadas: {
-            x: 490, y: 430,
-            lat: -23.550123, lng: -46.633456
+            x: 780, y: 730,
+            lat: -23.550678, lng: -46.633567
         },
         endereco: "Área de Credenciamento",
-        descricao: "Retirada de kits dos participantes",
+        descricao: "Local para retirada de kits dos participantes",
         horario: "07:00 - 19:00",
         distancia: null
     },
@@ -215,12 +218,12 @@ const pontosInteresse = [
         nome: "Ponto de Hidratação",
         categoria: "hidratacao",
         coordenadas: {
-            x: 503, y: 473,
-            lat: -23.550567, lng: -46.633234
+            x: 830, y: 800,
+            lat: -23.550789, lng: -46.633678
         },
-        endereco: "Área Leste",
-        descricao: "Ponto de hidratação",
-        horario: "24h",
+        endereco: "Setor Leste",
+        descricao: "Ponto de hidratação leste",
+        horario: "24 horas",
         distancia: null
     },
     {
@@ -228,12 +231,12 @@ const pontosInteresse = [
         nome: "Ponto de Hidratação",
         categoria: "hidratacao",
         coordenadas: {
-            x: 376, y: 360,
-            lat: -23.550234, lng: -46.633445
+            x: 430, y: 600,
+            lat: -23.550456, lng: -46.633123
         },
-        endereco: "Área Central",
-        descricao: "Ponto de hidratação",
-        horario: "24h",
+        endereco: "Setor Central",
+        descricao: "Ponto de hidratação central",
+        horario: "24 horas",
         distancia: null
     },
 
@@ -245,10 +248,10 @@ const pontosInteresse = [
         nome: "Tenda de Pagode",
         categoria: "tendas",
         coordenadas: {
-            x: 502, y: 390,
-            lat: -23.550111, lng: -46.633222
+            x: 830, y: 740,
+            lat: -23.550678, lng: -46.633789
         },
-        endereco: "Área Cultural",
+        endereco: "Área de Entretenimento",
         descricao: "Tenda com apresentações de pagode",
         horario: "18:00 - 23:00",
         distancia: null
@@ -258,12 +261,12 @@ const pontosInteresse = [
         nome: "Tenda",
         categoria: "tendas",
         coordenadas: {
-            x: 391, y: 394,
-            lat: -23.550333, lng: -46.633444
+            x: 500, y: 650,
+            lat: -23.550567, lng: -46.633345
         },
         endereco: "Área Central",
-        descricao: "Tenda de atividades",
-        horario: "09:00 - 21:00",
+        descricao: "Tenda de atividades gerais",
+        horario: "08:00 - 20:00",
         distancia: null
     },
     {
@@ -271,11 +274,11 @@ const pontosInteresse = [
         nome: "Tenda de Açaí/Sorvete",
         categoria: "tendas",
         coordenadas: {
-            x: 342, y: 362,
-            lat: -23.550555, lng: -46.633666
+            x: 325, y: 580,
+            lat: -23.550456, lng: -46.633234
         },
-        endereco: "Área de Lazer",
-        descricao: "Tenda de açaí e sorvetes",
+        endereco: "Área de Alimentação",
+        descricao: "Tenda especializada em açaí e sorvetes",
         horario: "10:00 - 22:00",
         distancia: null
     },
@@ -284,88 +287,107 @@ const pontosInteresse = [
         nome: "Tenda",
         categoria: "tendas",
         coordenadas: {
-            x: 470, y: 300,
-            lat: -23.550456, lng: -46.633234
+            x: 720, y: 480,
+            lat: -23.550345, lng: -46.633456
         },
-        endereco: "Área Norte",
-        descricao: "Tenda de atividades",
-        horario: "09:00 - 21:00",
+        endereco: "Setor Norte",
+        descricao: "Tenda de apoio norte",
+        horario: "08:00 - 20:00",
         distancia: null
     }
 ];
 
 // Configurações das categorias
 const categorias = {
-    todas: { 
-        label: 'Todos', 
-        emoji: '📍',
-        cor: '#3b82f6'
+    cerimonia_abertura: {
+        nome: "Cerimônia de Abertura",
+        cor: "#dc2626",
+        icone: "🎭"
     },
-    alimentacao_ouvintes: { 
-        label: 'Alimentação', 
-        emoji: '🍽️',
-        cor: '#f97316'
+    todos: {
+        nome: "Todos",
+        cor: "#3b82f6",
+        icone: "📍"
     },
-    alimentacao_jogadores: { 
-        label: 'Alimentação Competidores', 
-        emoji: '🥇',
-        cor: '#eab308'
+    alimentacao_ouvintes: {
+        nome: "Alimentação",
+        cor: "#f97316",
+        icone: "🍽️"
     },
-    campo_futebol: { 
-        label: 'Campos de Futebol', 
-        emoji: '⚽',
-        cor: '#22c55e'
+    alimentacao_jogadores: {
+        nome: "Alim. Competidores",
+        cor: "#eab308",
+        icone: "🥇"
     },
-    quadra_tenis: { 
-        label: 'Quadra de Tênis', 
-        emoji: '🎾',
-        cor: '#14b8a6'
+    campo_futebol: {
+        nome: "Campos Futebol",
+        cor: "#22c55e",
+        icone: "⚽"
     },
-    esportes: { 
-        label: 'Esportes', 
-        emoji: '🏊',
-        cor: '#06b6d4'
+    quadra_tenis: {
+        nome: "Quadra Tênis",
+        cor: "#14b8a6",
+        icone: "🎾"
     },
-    banheiros: { 
-        label: 'Banheiros', 
-        emoji: '🚻',
-        cor: '#8b5cf6'
+    esportes: {
+        nome: "Esportes",
+        cor: "#06b6d4",
+        icone: "🏊"
     },
-    entrada_saida: { 
-        label: 'Entrada e Acesso', 
-        emoji: '🚪',
-        cor: '#ef4444'
+    banheiros: {
+        nome: "Banheiros",
+        cor: "#8b5cf6",
+        icone: "🚻"
     },
-    servicos: { 
-        label: 'Serviços', 
-        emoji: '🏢',
-        cor: '#6b7280'
+    entrada_acesso: {
+        nome: "Entrada/Acesso",
+        cor: "#ef4444",
+        icone: "🚪"
     },
-    retirada_kit: { 
-        label: 'Retirada de Kit', 
-        emoji: '📦',
-        cor: '#10b981'
+    servicos: {
+        nome: "Serviços",
+        cor: "#6b7280",
+        icone: "🏢"
     },
-    hidratacao: { 
-        label: 'Hidratação', 
-        emoji: '💧',
-        cor: '#0ea5e9'
+    retirada_kit: {
+        nome: "Retirada Kit",
+        cor: "#10b981",
+        icone: "📦"
     },
-    tendas: { 
-        label: 'Tendas', 
-        emoji: '🏕️',
-        cor: '#f59e0b'
+    hidratacao: {
+        nome: "Hidratação",
+        cor: "#0ea5e9",
+        icone: "💧"
+    },
+    tendas: {
+        nome: "Tendas",
+        cor: "#f59e0b",
+        icone: "🏕️"
     }
 };
 
-// Configurações do mapa sem zoom
+// Configuração do mapa - SEM ZOOM
 const configMapa = {
-    larguraOriginal: 800,
-    alturaOriginal: 600,
-    zoomFixo: true, // Sem zoom
+    zoom: {
+        habilitado: false,  // ZOOM COMPLETAMENTE DESABILITADO
+        inicial: 1,
+        minimo: 1,
+        maximo: 1
+    },
+    pontos: {
+        tamanhoBase: 24,
+        animacao: true,
+        fixos: true  // PONTOS COMPLETAMENTE FIXOS
+    },
     responsivo: {
-        breakpointMobile: 768,
-        ajusteAutomatico: true
-    }
+        habilitado: true,
+        breakpoints: {
+            mobile: 768,
+            tablet: 1024
+        }
+    },
+    // Dimensões originais da imagem da planta
+    larguraOriginal: 1000,
+    alturaOriginal: 1000
 };
 
